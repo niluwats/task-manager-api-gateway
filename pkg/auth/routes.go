@@ -13,6 +13,7 @@ func RegisterRoutes(r *gin.Engine) *ServiceClient {
 	routes := r.Group("/auth")
 	routes.POST("/register", svcClient.Register)
 	routes.POST("/login", svcClient.Login)
+	routes.GET("/user/:ID", svcClient.ViewUser)
 
 	return svcClient
 }
@@ -23,4 +24,8 @@ func (svc *ServiceClient) Register(ctx *gin.Context) {
 
 func (svc *ServiceClient) Login(ctx *gin.Context) {
 	handlers.Login(ctx, svc.Client)
+}
+
+func (svc *ServiceClient) ViewUser(ctx *gin.Context) {
+	handlers.ViewUser(ctx, svc.Client)
 }
