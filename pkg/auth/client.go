@@ -7,6 +7,7 @@ import (
 
 	"github.com/niluwats/api-gateway/pkg/auth/pb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 type ServiceClient struct {
@@ -15,7 +16,7 @@ type ServiceClient struct {
 
 func InitServiceClient() pb.AuthServiceClient {
 	authServiceUrl := fmt.Sprintf("localhost:%v", os.Getenv("AUTH_SERVICE"))
-	conn, err := grpc.Dial(authServiceUrl, grpc.WithInsecure())
+	conn, err := grpc.Dial(authServiceUrl, grpc.WithTransportCredentials(insecure.NewCredentials()))
 
 	if err != nil {
 		log.Println("Couldn't connect : ", err)

@@ -10,9 +10,13 @@ func RegisterRoutes(r *gin.Engine) *ServiceClient {
 		Client: InitServiceClient(),
 	}
 
+	a := InitAuthMiddleware(svcClient)
+
 	routes := r.Group("/auth")
 	routes.POST("/register", svcClient.Register)
 	routes.POST("/login", svcClient.Login)
+
+	routes.Use(a.AuthRequired)
 	routes.GET("/user/:ID", svcClient.ViewUser)
 
 	return svcClient
