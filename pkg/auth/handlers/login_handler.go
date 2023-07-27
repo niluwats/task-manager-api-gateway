@@ -21,11 +21,7 @@ func Login(ctx *gin.Context, c pb.AuthServiceClient) {
 		return
 	}
 
-	res, err := c.Login(context.Background(), &pb.LoginRequest{Email: request.Email, Password: request.Password})
-	if err != nil {
-		ctx.JSON(http.StatusBadGateway, &res)
-		return
-	}
+	res, _ := c.Login(context.Background(), &pb.LoginRequest{Email: request.Email, Password: request.Password})
 
-	ctx.JSON(http.StatusOK, &res)
+	ctx.JSON(int(res.Status), &res)
 }

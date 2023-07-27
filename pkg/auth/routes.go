@@ -13,6 +13,11 @@ func RegisterRoutes(r *gin.Engine) *ServiceClient {
 	a := InitAuthMiddleware(svcClient)
 
 	routes := r.Group("/auth")
+
+	routes.GET("/", func(ctx *gin.Context) {
+		ctx.String(200, "Task Manager - API gateway")
+	})
+
 	routes.POST("/register", svcClient.Register)
 	routes.POST("/login", svcClient.Login)
 

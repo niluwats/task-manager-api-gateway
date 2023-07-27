@@ -40,7 +40,7 @@ func (c *authServiceClient) Register(ctx context.Context, in *RegisterRequest, o
 	out := new(RegisterResponse)
 	err := c.cc.Invoke(ctx, "/auth.AuthService/Register", in, out, opts...)
 	if err != nil {
-		return nil, err
+		return out, err
 	}
 	return out, nil
 }

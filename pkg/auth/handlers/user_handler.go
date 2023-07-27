@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"context"
-	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -12,11 +11,7 @@ import (
 func ViewUser(ctx *gin.Context, c pb.AuthServiceClient) {
 	ID, _ := strconv.Atoi(ctx.Param("ID"))
 
-	res, err := c.ViewUser(context.Background(), &pb.ViewUserRequest{UserID: int64(ID)})
-	if err != nil {
-		ctx.JSON(http.StatusBadGateway, &res)
-		return
-	}
+	res, _ := c.ViewUser(context.Background(), &pb.ViewUserRequest{UserID: int64(ID)})
 
-	ctx.JSON(http.StatusOK, &res)
+	ctx.JSON(int(res.Status), &res)
 }

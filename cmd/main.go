@@ -10,6 +10,7 @@ import (
 
 func main() {
 	r := gin.Default()
+
 	auth.RegisterRoutes(r)
 
 	r.Run(fmt.Sprintf(":%v", os.Getenv("WEB_PORT")))

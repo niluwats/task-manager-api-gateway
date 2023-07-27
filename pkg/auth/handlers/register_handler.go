@@ -13,8 +13,10 @@ type ErrResponse struct {
 }
 
 type RegisterRequest struct {
-	Email    string `json:"email" binding:"required,email"`
-	Password string `json:"password" binding:"required,gte=8,lte=32"`
+	FirstName string `json:"firstname" binding:"required"`
+	LastName  string `json:"lastname" binding:"required"`
+	Email     string `json:"email" binding:"required,email"`
+	Password  string `json:"password" binding:"required,gte=8,lte=32"`
 }
 
 func Register(ctx *gin.Context, c pb.AuthServiceClient) {
@@ -25,15 +27,12 @@ func Register(ctx *gin.Context, c pb.AuthServiceClient) {
 		return
 	}
 
-	res, err := c.Register(context.Background(), &pb.RegisterRequest{
-		Email:    request.Email,
-		Password: request.Password,
+	res, _ := c.Register(context.Background(), &pb.RegisterRequest{
+		Firstname: request.FirstName,
+		Lastname:  request.LastName,
+		Email:     request.Email,
+		Password:  request.Password,
 	})
 
-	if err != nil {
-		ctx.JSON(http.StatusBadGateway, &res)
-		return
-	}
-
-	ctx.JSON(http.StatusCreated, &res)
+	ctx.JSON(int(res.Status), &res)
 }
