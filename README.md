@@ -33,19 +33,19 @@ This is a golang backend api gateway microservice with a REST server related to 
 1. Clone the repository
 
 ```
-git clone https://github.com/niluwats/task-manager-api-gateway.git
+$ git clone https://github.com/niluwats/task-manager-api-gateway.git
 ```
 
 2. Navigate to the project directory
 
 ```
-cd task-manager-api-gateway
+$ cd task-manager-api-gateway
 ```
 
 3. Build and run application using make
 
 ```
-make up_build
+$ make up_build
 ```
 
 4. Access the application
@@ -58,9 +58,9 @@ navivate to http://localhost:8080/swagger/index.html
 
 
 ## Dependencies
-- [gin](github.com/gin-gonic/gin) - web framework for REST server
-- [go-grpc](google.golang.org/grpc) - gRPC library to set up client
-- [gin-swagger](github.com/swaggo/gin-swagger) - gin swagger library to for API specification
+- [gin](https://github.com/gin-gonic/gin) - web framework for REST server
+- [go-grpc](https://github.com/grpc/grpc-go) - gRPC library to set up client
+- [gin-swagger](https://github.com/swaggo/gin-swagger) - gin swagger library to for API specification
 
 ```
 $ go get github.com/gin-gonic/gin
