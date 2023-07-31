@@ -52,6 +52,10 @@ make up_build
 
 Once the containers are up and running, you can access the application at http://localhost:8080
 
+5. Access swagger UI
+
+navivate to http://localhost:8080/swagger/index.html
+
 
 ## Dependencies
 - [gin](github.com/gin-gonic/gin) - web framework for REST server
