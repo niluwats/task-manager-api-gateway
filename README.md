@@ -33,19 +33,19 @@ This is a golang backend api gateway microservice with a REST server related to 
 1. Clone the repository
 
 ```
-git clone https://github.com/niluwats/task-manager-api-gateway.git
+$ git clone https://github.com/niluwats/task-manager-api-gateway.git
 ```
 
 2. Navigate to the project directory
 
 ```
-cd task-manager-api-gateway
+$ cd task-manager-api-gateway
 ```
 
 3. Build and run application using make
 
 ```
-make up_build
+$ make up_build
 ```
 
 4. Access the application
