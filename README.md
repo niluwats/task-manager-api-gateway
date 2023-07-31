@@ -54,9 +54,9 @@ Once the containers are up and running, you can access the application at http:/
 
 
 ## Dependencies
-- [gin](github.com/gin-gonic/gin) - web framework for REST server
+- [gin](https://github.com/gin-gonic/gin) - web framework for REST server
 - [go-grpc](google.golang.org/grpc) - gRPC library to set up client
-- [gin-swagger](github.com/swaggo/gin-swagger) - gin swagger library to for API specification
+- [gin-swagger](https://github.com/swaggo/gin-swagger) - gin swagger library to for API specification
 
 ```
 $ go get github.com/gin-gonic/gin
