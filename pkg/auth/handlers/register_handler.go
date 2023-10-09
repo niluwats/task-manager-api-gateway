@@ -17,9 +17,9 @@ type ErrResponse struct {
 // RegisterRequest represents body of Register request.
 type RegisterRequest struct {
 	FirstName string `json:"firstname" binding:"required" example:"john" swaggertype:"string"`
-	LastName  string `json:"lastname" binding:"required" example:"smith" swaggertype:"integer"`
-	Email     string `json:"email" binding:"required,email" example:"johnsmith@example.com" swaggertype:"integer"`
-	Password  string `json:"password" binding:"required,gte=8,lte=32" example:"John123!" swaggertype:"integer"`
+	LastName  string `json:"lastname" binding:"required" example:"smith" swaggertype:"string"`
+	Email     string `json:"email" binding:"required,email" example:"johnsmith@example.com" swaggertype:"string"`
+	Password  string `json:"password" binding:"required,gte=8,lte=32" example:"John123!" swaggertype:"string"`
 }
 
 // Register godoc

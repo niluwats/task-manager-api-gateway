@@ -10,16 +10,7 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://swagger.io/terms/",
-        "contact": {
-            "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-        },
+        "contact": {},
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
@@ -48,7 +39,7 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ErrResponse"
+                            "$ref": "#/definitions/pkg_auth_handlers.ErrResponse"
                         }
                     },
                     "401": {
@@ -61,6 +52,227 @@ const docTemplate = `{
                         "description": "Not Found",
                         "schema": {
                             "$ref": "#/definitions/pb.LoginResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/project": {
+            "get": {
+                "description": "view all project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "projects"
+                ],
+                "summary": "View Projects",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_task_handlers.ErrResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectsResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectsResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "projects"
+                ],
+                "summary": "Create Project",
+                "parameters": [
+                    {
+                        "description": "ProjectReq",
+                        "name": "requestBody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ProjectReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_task_handlers.ErrResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/project/{ID}": {
+            "get": {
+                "description": "view a project by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "projects"
+                ],
+                "summary": "View Project",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_task_handlers.ErrResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update a project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "projects"
+                ],
+                "summary": "Update Project",
+                "parameters": [
+                    {
+                        "description": "ProjectReq",
+                        "name": "requestBody",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ProjectReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_task_handlers.ErrResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pb.ProjectResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "remove a project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "projects"
+                ],
+                "summary": "Remove Project",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/pb.RemovedProjectResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg_task_handlers.ErrResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/pb.RemovedProjectResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pb.RemovedProjectResponse"
                         }
                     }
                 }
@@ -100,7 +312,7 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ErrResponse"
+                            "$ref": "#/definitions/pkg_auth_handlers.ErrResponse"
                         }
                     },
                     "409": {
@@ -141,13 +353,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ErrResponse"
+                            "$ref": "#/definitions/pkg_auth_handlers.ErrResponse"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/handlers.ErrResponse"
+                            "$ref": "#/definitions/pkg_auth_handlers.ErrResponse"
                         }
                     },
                     "404": {
@@ -167,16 +379,48 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "handlers.ErrResponse": {
+        "handlers.ProjectReq": {
+            "type": "object"
+        },
+        "handlers.RegisterRequest": {
             "type": "object",
+            "required": [
+                "email",
+                "firstname",
+                "lastname",
+                "password"
+            ],
             "properties": {
-                "error": {
-                    "type": "string"
+                "email": {
+                    "type": "string",
+                    "example": "johnsmith@example.com"
+                },
+                "firstname": {
+                    "type": "string",
+                    "example": "john"
+                },
+                "lastname": {
+                    "type": "string",
+                    "example": "smith"
+                },
+                "password": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 8,
+                    "example": "John123!"
                 }
             }
         },
-        "handlers.RegisterRequest": {
-            "type": "object"
+        "pb.CommonResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
         },
         "pb.LoginResponse": {
             "type": "object",
@@ -192,6 +436,66 @@ const docTemplate = `{
                 }
             }
         },
+        "pb.Project": {
+            "type": "object",
+            "properties": {
+                "assignees": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "created_on": {
+                    "type": "string"
+                },
+                "creator": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "tasks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/pb.Task"
+                    }
+                },
+                "updated_on": {
+                    "type": "string"
+                }
+            }
+        },
+        "pb.ProjectResponse": {
+            "type": "object",
+            "properties": {
+                "common_response": {
+                    "$ref": "#/definitions/pb.CommonResponse"
+                },
+                "project": {
+                    "$ref": "#/definitions/pb.Project"
+                }
+            }
+        },
+        "pb.ProjectsResponse": {
+            "type": "object",
+            "properties": {
+                "common_response": {
+                    "$ref": "#/definitions/pb.CommonResponse"
+                },
+                "project": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/pb.Project"
+                    }
+                }
+            }
+        },
         "pb.RegisterResponse": {
             "type": "object",
             "properties": {
@@ -203,6 +507,49 @@ const docTemplate = `{
                 },
                 "userID": {
                     "type": "integer"
+                }
+            }
+        },
+        "pb.RemovedProjectResponse": {
+            "type": "object",
+            "properties": {
+                "common_response": {
+                    "$ref": "#/definitions/pb.CommonResponse"
+                }
+            }
+        },
+        "pb.Status": {
+            "type": "integer",
+            "enum": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "x-enum-varnames": [
+                "Status_TODO",
+                "Status_INPROGRESS",
+                "Status_READY",
+                "Status_COMPLETED"
+            ]
+        },
+        "pb.Task": {
+            "type": "object",
+            "properties": {
+                "assignee": {
+                    "type": "integer"
+                },
+                "creator": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "task_status": {
+                    "$ref": "#/definitions/pb.Status"
                 }
             }
         },
@@ -231,29 +578,34 @@ const docTemplate = `{
                     "type": "integer"
                 }
             }
+        },
+        "pkg_auth_handlers.ErrResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "pkg_task_handlers.ErrResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
         }
-    },
-    "securityDefinitions": {
-        "BearerAuth": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header"
-        }
-    },
-    "externalDocs": {
-        "description": "OpenAPI",
-        "url": "https://swagger.io/resources/open-api/"
     }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "1.0",
-	Host:             "localhost:8080",
-	BasePath:         "/api/v1",
+	Version:          "",
+	Host:             "",
+	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "Task Manager API Gateway",
-	Description:      "This is a REST server created with Gin.",
+	Title:            "",
+	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

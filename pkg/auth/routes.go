@@ -51,7 +51,7 @@ func RegisterRoutes(r *gin.Engine) *ServiceClient {
 	routes.POST("/login", svcClient.Login)
 
 	routes.Use(a.AuthRequired)
-	routes.GET("/user/:id", svcClient.ViewUser)
+	routes.GET("/user/:ID", svcClient.ViewUser)
 
 	return svcClient
 }
