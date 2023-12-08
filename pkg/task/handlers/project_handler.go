@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/niluwats/api-gateway/pkg/task/pb"
+	"google.golang.org/grpc/status"
 )
 
 // ErrResponse containing string
@@ -41,12 +42,22 @@ func CreateProject(ctx *gin.Context, c pb.TaskServiceClient) {
 		return
 	}
 
-	res, _ := c.CreateProject(ctx, &pb.NewProjectRequest{
+	res, err := c.CreateProject(ctx, &pb.NewProjectRequest{
 		Name:        request.Name,
 		Description: request.Description,
 		Creator:     request.Creator,
 		Assignees:   request.Assignees,
 	})
+
+	if err != nil {
+		statusErr, ok := status.FromError(err)
+		if ok {
+			ctx.JSON(int(statusErr.Code()), statusErr.Message())
+		} else {
+			ctx.JSON(http.StatusInternalServerError, err.Error())
+		}
+		return
+	}
 
 	ctx.JSON(int(res.CommonResponse.Status), &res)
 }
